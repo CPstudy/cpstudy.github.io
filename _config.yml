@@ -27,7 +27,7 @@ contact_page_description: "Horace theme comes with a contact form built-in. You 
 thankyou_page_description: "Your message has been successfully sent. We will contact you very soon!"
 
 # Social links
-twitter: 'username'
+#twitter: 'username'
 facebook: 'username'
 github: 'username'
 codepen: 'username'
