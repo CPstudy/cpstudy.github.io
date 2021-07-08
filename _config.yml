@@ -28,15 +28,15 @@ thankyou_page_description: "Your message has been successfully sent. We will con
 
 # Social links
 #twitter: 'username'
-facebook: 'username'
-github: 'username'
-codepen: 'username'
-dribbble: 'username'
-medium: '@username'
-instagram: 'username'
-pinterest: 'username'
-linkedin: 'username'
-producthunt: '@username'
+#facebook: 'username'
+github: 'cpstudy'
+#codepen: 'username'
+#dribbble: 'username'
+#medium: '@username'
+#instagram: 'username'
+#pinterest: 'username'
+#linkedin: 'username'
+#producthunt: '@username'
 
 # Navigation
 navigation:
