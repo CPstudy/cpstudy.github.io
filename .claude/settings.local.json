@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tail:*)",
+      "Bash(cd /c/Users/guide/Projects/nextjs/cpstudy.github.io && npm run build 2>&1)"
+    ]
+  }
+}
