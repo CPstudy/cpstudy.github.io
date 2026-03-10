@@ -15,7 +15,15 @@ export default function Home() {
         >
           dev.blog
         </Link>
-        <ModeToggle />
+        <div className="flex items-center gap-2">
+          <ModeToggle />
+          <Link
+            href="/design-system"
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors px-2 py-1"
+          >
+            디자인 시스템
+          </Link>
+        </div>
       </header>
 
       <main className="max-w-2xl mx-auto px-6 py-16">

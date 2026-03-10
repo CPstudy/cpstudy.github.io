@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(tail:*)",
-      "Bash(cd /c/Users/guide/Projects/nextjs/cpstudy.github.io && npm run build 2>&1)"
+      "Bash(cd /c/Users/guide/Projects/nextjs/cpstudy.github.io && npm run build 2>&1)",
+      "Bash(mkdir -p /c/Users/guide/Projects/nextjs/cpstudy.github.io/src/design-system/tokens /c/Users/guide/Projects/nextjs/cpstudy.github.io/src/design-system/components && mv /c/Users/guide/Projects/nextjs/cpstudy.github.io/src/components/ui/* /c/Users/guide/Projects/nextjs/cpstudy.github.io/src/design-system/components/ && rmdir /c/Users/guide/Projects/nextjs/cpstudy.github.io/src/components/ui)",
+      "Bash(npm run:*)"
     ]
   }
 }
