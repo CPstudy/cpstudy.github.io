@@ -48,7 +48,7 @@ export function PostList({ posts, categories, tags }: Props) {
   return (
     <div>
       <div className="mb-12">
-        <h1 className="text-4xl font-bold tracking-tight mb-2">{listTitle}</h1>
+        <h1 className="text-3xl font-bold tracking-tight mb-2">{listTitle}</h1>
         <p className="text-muted-foreground text-sm">{filtered.length}개의 포스트</p>
       </div>
     <div className="flex gap-8 items-start">
@@ -74,9 +74,9 @@ export function PostList({ posts, categories, tags }: Props) {
                           {post.category}
                         </span>
                       )}
-                      <h2 className="font-semibold text-foreground group-hover:text-primary transition-colors leading-snug truncate">
+                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors leading-snug truncate">
                         {post.title}
-                      </h2>
+                      </h3>
                     </div>
                     {post.date && (
                       <span className="flex items-center gap-1 text-xs text-muted-foreground shrink-0 mt-0.5">
