@@ -9,6 +9,7 @@ export interface PostMeta {
   title: string;
   date: string;
   description: string;
+  category: string;
   tags: string[];
 }
 
@@ -22,16 +23,34 @@ function ensurePostsDir() {
   }
 }
 
+function getAllMdFiles(dir: string): string[] {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  const files: string[] = [];
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...getAllMdFiles(fullPath));
+    } else if (entry.isFile() && entry.name.endsWith(".md")) {
+      files.push(fullPath);
+    }
+  }
+  return files;
+}
+
+function pathToSlug(fullPath: string): string {
+  return path
+    .relative(postsDirectory, fullPath)
+    .replace(/\.md$/, "")
+    .replace(/\\/g, "/");
+}
+
 export function getAllPosts(): PostMeta[] {
   ensurePostsDir();
 
-  const fileNames = fs
-    .readdirSync(postsDirectory)
-    .filter((name) => name.endsWith(".md"));
+  const files = getAllMdFiles(postsDirectory);
 
-  const posts = fileNames.map((fileName) => {
-    const slug = fileName.replace(/\.md$/, "");
-    const fullPath = path.join(postsDirectory, fileName);
+  const posts = files.map((fullPath) => {
+    const slug = pathToSlug(fullPath);
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const { data } = matter(fileContents);
 
@@ -40,6 +59,7 @@ export function getAllPosts(): PostMeta[] {
       title: (data.title as string) || slug,
       date: (data.date as string) || "",
       description: (data.description as string) || "",
+      category: slug.split("/")[0] ?? "",
       tags: (data.tags as string[]) || [],
     };
   });
@@ -57,6 +77,7 @@ export function getPostBySlug(slug: string): Post {
     title: (data.title as string) || slug,
     date: (data.date as string) || "",
     description: (data.description as string) || "",
+    category: slug.split("/")[0] ?? "",
     tags: (data.tags as string[]) || [],
     content,
   };
@@ -64,8 +85,5 @@ export function getPostBySlug(slug: string): Post {
 
 export function getAllSlugs(): string[] {
   ensurePostsDir();
-  return fs
-    .readdirSync(postsDirectory)
-    .filter((name) => name.endsWith(".md"))
-    .map((name) => name.replace(/\.md$/, ""));
+  return getAllMdFiles(postsDirectory).map(pathToSlug);
 }

@@ -39,7 +39,7 @@ export default function DesignSystemPage() {
 
       <main className="max-w-3xl mx-auto px-6 py-16 space-y-20">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight mb-2">디자인 시스템</h1>
+          <h1 className="text-4xl font-bold tracking-tight mb-2">디자인 시스템</h1>
           <p className="text-muted-foreground text-sm">
             블로그에서 사용하는 색상, 타이포그래피, 간격, 컴포넌트 모음입니다.
           </p>
