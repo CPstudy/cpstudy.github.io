@@ -81,7 +81,7 @@
   --primary-foreground: #ffffff;
   --secondary: #e5e5e6;
   --secondary-foreground: #383a42;
-  --muted: #f0f0f0;
+  --muted: #f2f4f7;
   --muted-foreground: #a0a1a7;
   --accent: #e5e5e6;
   --accent-foreground: #383a42;
@@ -230,7 +230,7 @@
 .prose :where(pre code.hljs):not(:where([class~="not-prose"] *)) {
   display: block;
   border-radius: 1.5rem;
-  background: var(--card);
+  background: var(--muted);
 }
 
 /* highlight.js dark mode overrides (One Dark Pro) */

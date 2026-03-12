@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
@@ -7,6 +8,15 @@ import { getAllSlugs, getPostBySlug } from "@/lib/posts";
 import { SiteHeader } from "@/components/site-header";
 import { TableOfContents } from "@/components/table-of-contents";
 import { CalendarDays, ArrowLeft, Tag } from "lucide-react";
+
+function nodeToText(node: React.ReactNode): string {
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(nodeToText).join("");
+  if (React.isValidElement(node)) {
+    return nodeToText((node.props as { children?: React.ReactNode }).children);
+  }
+  return "";
+}
 
 function slugify(text: string) {
   return text
@@ -88,40 +98,39 @@ export default async function PostPage({
           <main className="min-w-0 flex-1">
             {/* Post Header */}
             <div className="mb-10 space-y-4">
-              <h1 className="text-4xl font-bold tracking-tight leading-tight">
+              <h1 className="text-5xl font-bold tracking-tight leading-tight">
                 {post.title}
               </h1>
 
-              <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+              {post.tags.length > 0 && (
+                <div className="flex items-center gap-1.5 flex-wrap text-sm text-muted-foreground">
+                  <Tag className="h-3.5 w-3.5" />
+                  {post.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              <div className="space-y-1">
+                {post.description && (
+                  <p className="text-muted-foreground">
+                    {post.description}
+                  </p>
+                )}
+
                 {post.date && (
-                  <span className="flex items-center gap-1">
+                  <span className="flex items-center gap-1 text-sm text-muted-foreground">
                     <CalendarDays className="h-3.5 w-3.5" />
                     {post.date}
                   </span>
                 )}
-                {post.tags.length > 0 && (
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    <Tag className="h-3.5 w-3.5" />
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
               </div>
-
-              {post.description && (
-                <p className="text-muted-foreground leading-relaxed border-l-2 border-primary pl-4">
-                  {post.description}
-                </p>
-              )}
             </div>
-
-            <hr className="border-border mb-10" />
 
             {/* Post Content */}
             <article className="prose prose-neutral dark:prose-invert max-w-none">
@@ -132,9 +141,9 @@ export default async function PostPage({
                     remarkPlugins={[remarkGfm]}
                     rehypePlugins={[rehypeHighlight]}
                     components={{
-                      h1: ({ children }) => <h1 id={genId(String(children))}>{children}</h1>,
-                      h2: ({ children }) => <h2 id={genId(String(children))}>{children}</h2>,
-                      h3: ({ children }) => <h3 id={genId(String(children))}>{children}</h3>,
+                      h1: ({ children }) => <h1 id={genId(nodeToText(children))}>{children}</h1>,
+                      h2: ({ children }) => <h2 id={genId(nodeToText(children))}>{children}</h2>,
+                      h3: ({ children }) => <h3 id={genId(nodeToText(children))}>{children}</h3>,
                     }}
                   >
                     {post.content}

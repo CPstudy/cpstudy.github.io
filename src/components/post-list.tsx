@@ -67,17 +67,28 @@ export function PostList({ posts, categories, tags }: Props) {
                   href={`/posts/${post.slug}`}
                   className="group flex flex-col gap-2 rounded-3xl px-4 py-5 -mx-4 hover:bg-muted/50 active:bg-muted/80 active:scale-95 transition-all"
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-center gap-2 min-w-0">
+                  {(post.category || post.tags.length > 0) && (
+                    <div className="flex items-center gap-1.5 flex-wrap">
                       {post.category && (
                         <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded shrink-0">
                           {post.category}
                         </span>
                       )}
-                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors leading-snug truncate">
-                        {post.title}
-                      </h3>
+                      {post.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
                     </div>
+                  )}
+
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors leading-snug truncate">
+                      {post.title}
+                    </h3>
                     {post.date && (
                       <span className="flex items-center gap-1 text-xs text-muted-foreground shrink-0 mt-0.5">
                         <CalendarDays className="h-3 w-3" />
@@ -90,20 +101,6 @@ export function PostList({ posts, categories, tags }: Props) {
                     <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
                       {post.description}
                     </p>
-                  )}
-
-                  {post.tags.length > 0 && (
-                    <div className="flex items-center gap-1.5 flex-wrap">
-                      <Tag className="h-3 w-3 text-muted-foreground" />
-                      {post.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
                   )}
                 </Link>
               </li>
@@ -163,7 +160,7 @@ export function PostList({ posts, categories, tags }: Props) {
               <li>
                 <button
                   onClick={() => toggleCategory("__all__")}
-                  className={`w-full flex items-center justify-between rounded-3xl px-4 py-2 text-left transition-all cursor-pointer font-bold active:scale-95 ${
+                  className={`w-full flex items-center justify-between rounded-xl px-4 py-2 text-left transition-all cursor-pointer font-bold active:scale-95 ${
                     activeCategory === null
                       ? "bg-primary text-primary-foreground hover:brightness-110 active:brightness-90"
                       : "hover:bg-muted active:bg-muted/70"
@@ -185,7 +182,7 @@ export function PostList({ posts, categories, tags }: Props) {
                 <li key={name}>
                   <button
                     onClick={() => toggleCategory(name)}
-                    className={`w-full flex items-center justify-between rounded-3xl px-4 py-2 text-left transition-all cursor-pointer font-bold active:scale-95 ${
+                    className={`w-full flex items-center justify-between rounded-xl px-4 py-2 text-left transition-all cursor-pointer font-bold active:scale-95 ${
                       activeCategory === name
                         ? "bg-primary text-primary-foreground hover:brightness-110 active:brightness-90"
                         : "hover:bg-muted active:bg-muted/70"
