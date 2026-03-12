@@ -64,6 +64,8 @@ tags: ["마크다운", "문법", "가이드"]
 
 이미지: `![대체 텍스트](이미지 URL)`
 
+예시: ![alt text](https://i.namu.wiki/i/4z5YO1vyX05vKNbZy0TALKaub1R5K0Q2rJCg4-FB5KPepnG6RmypTj-5ERT6jBCGSxci8J2YJlsuehOjCwrdDN4SI-fhmKRpXt0RJUjb7TXA4LfUlhwJI_Tc3F-okmWw6F6PV6u7JhHbH5dGm7e42w.webp)
+
 ---
 
 ## 5. 코드 (Code)

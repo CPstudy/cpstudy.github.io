@@ -25,14 +25,7 @@ export function ModeToggle() {
             <button
               key={label}
               onClick={() => setTheme(label.toLowerCase())}
-              className="
-                w-full rounded-[8px] px-4 py-2
-                text-left text-xs font-bold text-popover-foreground
-                cursor-pointer select-none
-                transition-colors
-                hover:bg-accent hover:text-accent-foreground
-                active:scale-95 active:bg-accent/70
-              "
+              className="w-full rounded-[8px] px-4 py-2 text-left text-xs font-bold text-popover-foreground cursor-pointer select-none transition-colors hover:bg-accent hover:text-accent-foreground active:scale-95 active:bg-accent/70"
             >
               {label}
             </button>
