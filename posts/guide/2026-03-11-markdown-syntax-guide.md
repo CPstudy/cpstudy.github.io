@@ -4,6 +4,7 @@ date: "2026-03-11"
 description: "블로그 포스트 작성에 필요한 마크다운 문법을 총정리합니다."
 category: "Guide"
 tags: ["마크다운", "문법", "가이드"]
+thumbnail: "/thumbnails/thumb-test.png"
 ---
 
 ## 마크다운이란?

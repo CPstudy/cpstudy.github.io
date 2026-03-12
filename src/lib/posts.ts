@@ -11,6 +11,7 @@ export interface PostMeta {
   description: string;
   category: string;
   tags: string[];
+  thumbnail?: string;
 }
 
 export interface Post extends PostMeta {
@@ -61,6 +62,7 @@ export function getAllPosts(): PostMeta[] {
       description: (data.description as string) || "",
       category: slug.split("/")[0] ?? "",
       tags: (data.tags as string[]) || [],
+      thumbnail: (data.thumbnail as string) || undefined,
     };
   });
 
@@ -79,6 +81,7 @@ export function getPostBySlug(slug: string): Post {
     description: (data.description as string) || "",
     category: slug.split("/")[0] ?? "",
     tags: (data.tags as string[]) || [],
+    thumbnail: (data.thumbnail as string) || undefined,
     content,
   };
 }

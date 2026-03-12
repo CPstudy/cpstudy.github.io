@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { CalendarDays, Tag, FolderOpen, ChevronLeft, ChevronRight } from "lucide-react";
 import type { PostMeta } from "@/lib/posts";
 
@@ -65,45 +66,53 @@ export function PostList({ posts, categories, tags }: Props) {
               <li key={post.slug}>
                 <Link
                   href={`/posts/${post.slug}`}
-                  className="group flex flex-col gap-2 rounded-3xl px-4 py-5 -mx-4 hover:bg-muted/50 active:bg-muted/80 active:scale-95 transition-all"
+                  className="group flex gap-4 rounded-3xl px-4 py-5 -mx-4 hover:bg-muted/50 active:bg-muted/80 active:scale-95 transition-all"
                 >
-                  {(post.category || post.tags.length > 0) && (
+                  <div className="flex-1 min-w-0 flex flex-col gap-2">
+                    {(post.category || post.tags.length > 0) && (
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        {post.category && (
+                          <span className="text-xs text-primary font-semibold">
+                            {post.category}
+                          </span>
+                        )}
+                      </div>
+                    )}
+
+                    <div className="flex items-start justify-between gap-4">
+                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors leading-snug truncate">
+                        {post.title}
+                      </h3>
+                    </div>
+
+                    {post.description && (
+                      <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                        {post.description}
+                      </p>
+                    )}
                     <div className="flex items-center gap-1.5 flex-wrap">
-                      {post.category && (
-                        <span className="text-xs text-primary font-semibold">
-                          {post.category}
+                      {post.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-xs text-muted-foreground"
+                        >
+                          #{tag}
                         </span>
-                      )}
+                      ))}
+                    </div>
+                  </div>
+
+                  {post.thumbnail && (
+                    <div className="shrink-0 w-48 h-30 rounded-2xl overflow-hidden bg-muted">
+                      <Image
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${post.thumbnail}`}
+                        alt={post.title}
+                        width={256}
+                        height={160}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   )}
-
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors leading-snug truncate">
-                      {post.title}
-                    </h3>
-                    {post.date && (
-                      <span className="flex items-center gap-1 text-xs text-muted-foreground shrink-0 mt-0.5">
-                        <CalendarDays className="h-3 w-3" />
-                        {post.date}
-                      </span>
-                    )}
-                  </div>
-
-                  {post.description && (
-                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
-                      {post.description}
-                    </p>
-                  )}
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs text-muted-foreground"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
                 </Link>
               </li>
             ))}
