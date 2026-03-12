@@ -9,7 +9,7 @@ export function SiteHeader() {
           href="/"
           className="text-sm font-semibold hover:text-primary transition-colors"
         >
-          dev.blog
+          CPstudy
         </Link>
         <ModeToggle />
       </div>

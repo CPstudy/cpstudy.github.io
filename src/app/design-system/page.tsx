@@ -32,7 +32,7 @@ export default function DesignSystemPage() {
           className="flex items-center gap-2 text-sm font-semibold hover:text-primary transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
-          dev.blog
+          CPstudy
         </Link>
         <ModeToggle />
       </header>

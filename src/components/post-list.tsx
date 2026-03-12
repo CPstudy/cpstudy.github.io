@@ -70,18 +70,10 @@ export function PostList({ posts, categories, tags }: Props) {
                   {(post.category || post.tags.length > 0) && (
                     <div className="flex items-center gap-1.5 flex-wrap">
                       {post.category && (
-                        <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded shrink-0">
+                        <span className="text-xs text-primary font-semibold">
                           {post.category}
                         </span>
                       )}
-                      {post.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full"
-                        >
-                          #{tag}
-                        </span>
-                      ))}
                     </div>
                   )}
 
@@ -102,6 +94,16 @@ export function PostList({ posts, categories, tags }: Props) {
                       {post.description}
                     </p>
                   )}
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    {post.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-xs text-muted-foreground"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
                 </Link>
               </li>
             ))}

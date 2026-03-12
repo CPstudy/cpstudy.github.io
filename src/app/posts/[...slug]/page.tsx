@@ -21,15 +21,17 @@ function nodeToText(node: React.ReactNode): string {
 function slugify(text: string) {
   return text
     .toLowerCase()
-    .replace(/[^\w\s-]/g, "")
+    .replace(/[^\p{L}\p{N}\s-]/gu, "")
     .trim()
     .replace(/\s+/g, "-");
 }
 
 function createIdGenerator() {
   const counts = new Map<string, number>();
+  let index = 0;
   return (text: string) => {
-    const base = slugify(text);
+    index++;
+    const base = slugify(text) || `heading-${index}`;
     const count = counts.get(base) ?? 0;
     counts.set(base, count + 1);
     return count === 0 ? base : `${base}-${count}`;
@@ -98,13 +100,20 @@ export default async function PostPage({
           <main className="min-w-0 flex-1">
             {/* Post Header */}
             <div className="mb-10 space-y-4">
-              <h1 className="text-5xl font-bold tracking-tight leading-tight">
-                {post.title}
-              </h1>
+              <div className="">
+                {post.category && (
+                  <span className="inline-block text-base font-semibold text-primary">
+                    {post.category}
+                  </span>
+                )}
+
+                <h1 className="text-5xl font-bold tracking-tight leading-tight">
+                  {post.title}
+                </h1>
+              </div>
 
               {post.tags.length > 0 && (
                 <div className="flex items-center gap-1.5 flex-wrap text-sm text-muted-foreground">
-                  <Tag className="h-3.5 w-3.5" />
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
@@ -116,13 +125,7 @@ export default async function PostPage({
                 </div>
               )}
 
-              <div className="space-y-1">
-                {post.description && (
-                  <p className="text-muted-foreground">
-                    {post.description}
-                  </p>
-                )}
-
+              <div>
                 {post.date && (
                   <span className="flex items-center gap-1 text-sm text-muted-foreground">
                     <CalendarDays className="h-3.5 w-3.5" />
