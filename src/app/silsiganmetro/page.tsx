@@ -3,8 +3,14 @@ import { Train } from "lucide-react";
 
 export default function SubwayPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <SiteHeader />
+    <div className="dark min-h-screen text-foreground" style={{ backgroundColor: "#000000" }}>
+      <div
+        className="fixed inset-0 pointer-events-none"
+        style={{
+          boxShadow: "inset 0 0 500px 50px #98BC4C40",
+        }}
+      />
+      <SiteHeader transparent />
 
       <main className="max-w-6xl mx-auto px-6 py-16">
         <div className="flex flex-col items-center justify-center py-20 text-center">

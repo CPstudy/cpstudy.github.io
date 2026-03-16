@@ -10,12 +10,14 @@ const services = [
     description: "실시간 지하철 도착 정보를 확인하세요.",
     href: "/silsiganmetro",
     icon: Train,
+    color: "#98BC4C",
   },
   {
     title: "엘베인포",
     description: "엘리베이터 운행 정보를 확인하세요.",
     href: "/elevinfo",
     icon: Building2,
+    color: "#209EAD",
   },
 ];
 
@@ -33,13 +35,14 @@ export default function Home() {
             <Link
               key={service.href}
               href={service.href}
-              className="group rounded-3xl bg-muted/50 p-6 hover:bg-muted/70 active:bg-muted/80 active:scale-95 transition-all"
+              className="group rounded-3xl p-6 active:scale-95 transition-all text-white"
+              style={{ backgroundColor: service.color }}
             >
-              <service.icon className="h-8 w-8 text-primary mb-4" />
-              <h2 className="text-lg font-semibold mb-1 group-hover:text-primary transition-colors">
+              <service.icon className="h-8 w-8 text-white mb-4" />
+              <h2 className="text-lg font-semibold mb-1">
                 {service.title}
               </h2>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-white/80">
                 {service.description}
               </p>
             </Link>

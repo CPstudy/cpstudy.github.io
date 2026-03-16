@@ -7,9 +7,9 @@ const navItems = [
   { label: "블로그", href: "/blog" },
 ];
 
-export function SiteHeader() {
+export function SiteHeader({ transparent = false }: { transparent?: boolean }) {
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur h-12">
+    <header className={`sticky top-0 z-50 w-full h-12 ${transparent ? "" : "bg-background/95 backdrop-blur"}`}>
       <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
         <div className="flex items-center gap-6">
           <Link
