@@ -65,7 +65,7 @@ export function PostList({ posts, categories, tags }: Props) {
             {paged.map((post) => (
               <li key={post.slug}>
                 <Link
-                  href={`/posts/${post.slug}`}
+                  href={`/blog/${post.slug}`}
                   className="group flex gap-4 rounded-3xl px-4 py-5 -mx-4 hover:bg-muted/50 active:bg-muted/80 active:scale-95 transition-all"
                 >
                   <div className="flex-1 min-w-0 flex flex-col gap-2">

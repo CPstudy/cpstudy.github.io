@@ -158,7 +158,7 @@ export default async function PostPage({
             <hr className="border-border mt-16 mb-8" />
 
             <Link
-              href="/"
+              href="/blog"
               className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
