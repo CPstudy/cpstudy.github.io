@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true, // GitHub Pages does not support optimized images
   },
-  basePath: "/cpstudy", // Change this to your repository name if different
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || "",
   reactCompiler: true,
 };
 
