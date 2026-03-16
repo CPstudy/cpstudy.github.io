@@ -1,9 +1,11 @@
 import { SiteHeader } from "@/components/site-header";
+import { DotGrid } from "@/components/dot-grid";
 import { Train } from "lucide-react";
 
 export default function SubwayPage() {
   return (
     <div className="dark min-h-screen text-foreground" style={{ backgroundColor: "#000000" }}>
+      <DotGrid color="rgba(152, 188, 76, 0.2)" />
       <div
         className="fixed inset-0 pointer-events-none"
         style={{

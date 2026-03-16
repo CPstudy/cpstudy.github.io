@@ -1,9 +1,11 @@
 import { SiteHeader } from "@/components/site-header";
+import { DotGrid } from "@/components/dot-grid";
 import { Building2 } from "lucide-react";
 
 export default function ElevatorPage() {
   return (
     <div className="dark min-h-screen text-foreground" style={{ backgroundColor: "#000000" }}>
+      <DotGrid color="rgba(32, 158, 173, 0.2)" />
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
