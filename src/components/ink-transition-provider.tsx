@@ -12,8 +12,10 @@ const InkTransitionContext = createContext<InkTransitionContextType>({
   trigger: () => {},
 });
 
+type Phase = "idle" | "visible" | "hiding";
+
 interface OverlayState {
-  active: boolean;
+  phase: Phase;
   color: string;
   glowColor: string;
 }
@@ -23,25 +25,25 @@ export function InkTransitionProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [overlay, setOverlay] = useState<OverlayState>({ active: false, color: "", glowColor: "" });
+  const [overlay, setOverlay] = useState<OverlayState>({ phase: "idle", color: "", glowColor: "" });
   const [opacity, setOpacity] = useState(0);
   const router = useRouter();
 
   useEffect(() => {
-    if (overlay.active) {
+    if (overlay.phase === "visible") {
       requestAnimationFrame(() => setOpacity(1));
+    } else if (overlay.phase === "hiding") {
+      setOpacity(0);
     }
-  }, [overlay.active]);
+  }, [overlay.phase]);
 
   const trigger = useCallback(
     (href: string, color: string, glowColor: string) => {
       setOpacity(0);
-      setOverlay({ active: true, color, glowColor });
+      setOverlay({ phase: "visible", color, glowColor });
       setTimeout(() => router.push(href), 600);
-      setTimeout(() => {
-        setOverlay({ active: false, color, glowColor });
-        setOpacity(0);
-      }, 650);
+      setTimeout(() => setOverlay((prev) => ({ ...prev, phase: "hiding" })), 650);
+      setTimeout(() => setOverlay((prev) => ({ ...prev, phase: "idle" })), 1150);
     },
     [router]
   );
@@ -49,7 +51,7 @@ export function InkTransitionProvider({
   return (
     <InkTransitionContext.Provider value={{ trigger }}>
       {children}
-      {overlay.active && (
+      {overlay.phase !== "idle" && (
         <div
           style={{
             position: "fixed",
@@ -58,7 +60,9 @@ export function InkTransitionProvider({
             backgroundColor: "#000000",
             pointerEvents: "none",
             opacity,
-            transition: "opacity 550ms ease-in-out",
+            transition: overlay.phase === "visible"
+              ? "opacity 550ms ease-in-out"
+              : "opacity 450ms ease-out",
           }}
         >
           <DotGrid color={overlay.color} />
