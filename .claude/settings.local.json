@@ -14,7 +14,9 @@
       "Bash(echo \"=== $f ===\")",
       "Read(//c/Users/guide/Projects/nextjs/cpstudy.github.io/posts/**)",
       "Bash(mkdir -p \"C:/Users/guide/Projects/nextjs/cpstudy.github.io/src/app/posts/[...slug]\"\ncp \"C:/Users/guide/Projects/nextjs/cpstudy.github.io/src/app/posts/[slug]/page.tsx\" \\\\\n   \"C:/Users/guide/Projects/nextjs/cpstudy.github.io/src/app/posts/[...slug]/page.tsx\"\nrm -rf \"C:/Users/guide/Projects/nextjs/cpstudy.github.io/src/app/posts/[slug]\"\necho \"Done\")",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "WebFetch(domain:play.google.com)",
+      "Bash(npx next:*)"
     ]
   }
 }
