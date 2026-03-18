@@ -1,5 +1,6 @@
 import { SiteHeader } from "@/components/site-header";
 import { DotGrid } from "@/components/dot-grid";
+import { ScreenshotCarousel } from "@/components/screenshot-carousel";
 import { Train, List, Zap, Info } from "lucide-react";
 
 const features = [
@@ -21,23 +22,6 @@ const features = [
   },
 ];
 
-const lines = [
-  "1호선",
-  "2호선",
-  "3호선",
-  "4호선",
-  "5호선",
-  "6호선",
-  "7호선",
-  "8호선",
-  "9호선",
-  "경의중앙선",
-  "분당선",
-  "수인선",
-  "신분당선",
-  "경춘선",
-  "공항철도",
-];
 
 export default function SubwayPage() {
   return (
@@ -76,6 +60,11 @@ export default function SubwayPage() {
           </a>
         </section>
 
+        {/* Screenshots */}
+        <section className="py-16">
+          <ScreenshotCarousel />
+        </section>
+
         {/* Features */}
         <section className="py-16">
           <h2 className="text-2xl font-bold text-center mb-10">주요 기능</h2>
@@ -95,22 +84,7 @@ export default function SubwayPage() {
           </div>
         </section>
 
-        {/* Supported Lines */}
-        <section className="py-16">
-          <h2 className="text-2xl font-bold text-center mb-10">지원 노선</h2>
-          <div className="flex flex-wrap justify-center gap-3">
-            {lines.map((line) => (
-              <span
-                key={line}
-                className="rounded-full bg-[#98BC4C]/20 text-[#98BC4C] px-4 py-2 text-sm font-medium"
-              >
-                {line}
-              </span>
-            ))}
-          </div>
-        </section>
-
-        {/* Notice */}
+{/* Notice */}
         <section className="py-16 border-t border-white/10">
           <div className="text-sm text-muted-foreground space-y-2">
             <p>
