@@ -1,9 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { ModeToggle } from "@/components/mode-toggle";
+import { InkTransitionLink } from "@/components/ink-transition-link";
 
 const navItems = [
-  { label: "실시간지하철", href: "/silsiganmetro" },
-  { label: "엘베인포", href: "/elevinfo" },
+  { label: "실시간지하철", href: "/silsiganmetro", color: "rgba(152, 188, 76, 0.2)", glowColor: "#98BC4C40" },
+  { label: "엘베인포", href: "/elevinfo", color: "rgba(32, 158, 173, 0.2)", glowColor: "#209EAD40" },
   { label: "블로그", href: "/blog" },
 ];
 
@@ -19,15 +22,27 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean }) {
             CPstudy
           </Link>
           <nav className="hidden sm:flex items-center gap-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) =>
+              item.color ? (
+                <InkTransitionLink
+                  key={item.href}
+                  href={item.href}
+                  color={item.color}
+                  glowColor={item.glowColor!}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {item.label}
+                </InkTransitionLink>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
           </nav>
         </div>
         <ModeToggle />

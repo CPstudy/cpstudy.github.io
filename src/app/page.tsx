@@ -3,6 +3,7 @@ import Image from "next/image";
 import { SiteHeader } from "@/components/site-header";
 import { Train, Building2 } from "lucide-react";
 import { getAllPosts } from "@/lib/posts";
+import { InkTransitionLink } from "@/components/ink-transition-link";
 
 const services = [
   {
@@ -11,6 +12,8 @@ const services = [
     href: "/silsiganmetro",
     icon: Train,
     color: "#98BC4C",
+    dotColor: "rgba(152, 188, 76, 0.2)",
+    glowColor: "#98BC4C40",
   },
   {
     title: "엘베인포",
@@ -18,6 +21,8 @@ const services = [
     href: "/elevinfo",
     icon: Building2,
     color: "#209EAD",
+    dotColor: "rgba(32, 158, 173, 0.2)",
+    glowColor: "#209EAD40",
   },
 ];
 
@@ -32,9 +37,11 @@ export default function Home() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {services.map((service) => (
-            <Link
+            <InkTransitionLink
               key={service.href}
               href={service.href}
+              color={service.dotColor}
+              glowColor={service.glowColor}
               className="group rounded-3xl p-6 active:scale-95 transition-all text-white"
               style={{ backgroundColor: service.color }}
             >
@@ -45,7 +52,7 @@ export default function Home() {
               <p className="text-sm text-white/80">
                 {service.description}
               </p>
-            </Link>
+            </InkTransitionLink>
           ))}
         </div>
 

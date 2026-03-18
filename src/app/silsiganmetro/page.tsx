@@ -38,7 +38,7 @@ export default function SubwayPage() {
       />
       <SiteHeader transparent />
 
-      <main className="relative max-w-6xl mx-auto px-6 py-16">
+      <main className="relative max-w-6xl mx-auto px-6 py-16 animate-[page-fade-in_0.6s_ease-out_0.2s_both]">
         {/* Hero */}
         <section className="flex flex-col items-center text-center py-20">
           <div className="rounded-3xl bg-[#98BC4C]/20 p-5 mb-6">

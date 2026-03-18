@@ -3,6 +3,7 @@ import { Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { InkTransitionProvider } from "@/components/ink-transition-provider";
 
 const pretendard = localFont({
   src: "../fonts/PretendardVariable.woff2",
@@ -39,7 +40,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <InkTransitionProvider>{children}</InkTransitionProvider>
         </ThemeProvider>
       </body>
     </html>

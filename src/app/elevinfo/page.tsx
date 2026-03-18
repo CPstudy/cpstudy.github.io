@@ -14,7 +14,7 @@ export default function ElevatorPage() {
       />
       <SiteHeader transparent />
 
-      <main className="max-w-6xl mx-auto px-6 py-16">
+      <main className="max-w-6xl mx-auto px-6 py-16 animate-[page-fade-in_0.6s_ease-out_0.2s_both]">
         <div className="flex flex-col items-center justify-center py-20 text-center">
           <Building2 className="h-12 w-12 text-muted-foreground mb-4" />
           <h1 className="text-2xl font-bold mb-2">엘베인포</h1>
